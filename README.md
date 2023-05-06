@@ -6,4 +6,4 @@
 
 ## TODO
 
-* [ ] fix overlay doc `<a>` style
+* [x] fix overlay doc `<a>` style

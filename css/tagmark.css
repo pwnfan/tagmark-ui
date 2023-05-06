@@ -10,6 +10,18 @@
     --tag--max-witdh: auto;
 }
 
+a {
+    color: white;
+}
+
+a:visited {
+    color: darkgray;
+}
+
+a:hover {
+    color: lightblue;
+}
+
 body {
     background-color: #333;
     font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
