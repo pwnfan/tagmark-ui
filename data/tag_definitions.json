@@ -3,7 +3,7 @@
     "agent": "an Agent is a small program runnning on a compromised host, through which an attack can take control of the host. Agent from malicious attacker is so-called Trojan.",
     "android": "Android",
     "api": "Application Programming Interface(API) related",
-    "apt": "n Advanced Persistent Threat(APT) is a stealthy threat actor, typically a nation state or state-sponsored group, which gains unauthorized access to a computer network and remains undetected for an extended period.",
+    "apt": "Advanced Persistent Threat(APT) is a stealthy threat actor, typically a nation state or state-sponsored group, which gains unauthorized access to a computer network and remains undetected for an extended period.",
     "article": "it is an article(blog)",
     "aslr": "Address space layout randomization (ASLR) is a computer security technique involved in preventing exploitation of memory corruption vulnerabilities.",
     "aws": "Amazon Web Services, Inc. is a subsidiary of Amazon that provides on-demand cloud computing platforms and APIs to individuals, companies, and governments, on a metered, pay-as-you-go basis.",
