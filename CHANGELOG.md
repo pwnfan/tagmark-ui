@@ -1,4 +1,10 @@
-# v0.1.1
+# Changelog
+
+## v0.1.2
+
+- (8275d29e) code>modify.fix: change github url
+
+## v0.1.1
 
 - (61601e95) code>modify.fix: fix title of index page
 - (c6bfcfd2) code>modify.fix: change a tag style
@@ -9,6 +15,6 @@
 - (b8ebff6e) code>modify.fix: correct fitler doc github link
 - (f443cbbb) code>new: finish README
 
-# v0.1.0
+## v0.1.0
 
 - basic code finished
