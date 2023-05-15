@@ -26,7 +26,9 @@ The following keywords (operators) are defined in Advanced Filter:
 
 Here is a typical usage example:
 
-If I want to filter out the <u>reconnaissance</u> (tag `recon`) tools in <u>security</u> (tag `sec`), _**and**_ it must be implemented in <u>Python</u> (tag `python`) _**or**_ <u>Golang</u> (tag `go`), then I should enter `sec AND recon AND (Python OR Go)` in the filter input box of the Tags column.
+If I want to filter out the <u>reconnaissance</u> (tag `recon`) tools in <u>security</u> (tag `sec`), _**and**_ it must be implemented in <u>Python</u> (tag `python`) _**or**_ <u>Golang</u> (tag `golang`), then I should enter `sec AND recon AND (Python OR Golang)` in the filter input box of the Tags column.
+
+It should be emphasized that `tag` are case-insensitive. Therefore, in the example above, entering `sec AND recon AND (python OR golang)` in the filter can get the same results.
 
 ### >= Filter
 
@@ -42,7 +44,7 @@ It should be noted that quick tag inputting is only available in the `Tags` colu
 
 ## Using Filters Through URL GET Parameters
 
-tagmark-ui has implemented the invocation of filters through pure frontend Javascript. Therefore, the result of the previous filter examples can be accessed through [https://your.site/tagmark/?tags=sec AND recon AND (Python OR Go)](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Go)) (the real URL of this link is my tagmark page in my blog - pwnfan).
+tagmark-ui has implemented the invocation of filters through pure frontend Javascript. Therefore, the result of the previous filter examples can be accessed through [https://your.site/tagmark/?tags=sec AND recon AND (Python OR Golang)](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Golang)) (the real URL of this link is my tagmark page in my blog - pwnfan).
 
 This feature is for easy sharing of specific filtered URL subsets with others, such as URLs containing certain specified tags.
 
@@ -64,7 +66,7 @@ Here is the mapping relationship between the "UI column name" and the "column na
 - `Date Added`: `time_added`
 - `Comment`: `comment`
 
-In addition, multiple keys in GET parameters are also allowed, such as [https://your.site/tagmark/?tags=sec AND recon AND (Python OR Go)&github_repo_info.count_star=3000](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Go)&github_repo_info.count_star=3000) (the real URL of this link is my tagmark page in my blog - pwnfan), which adds an additional filter condition of "Github Star number >= 3000" on the basis of the original filter condition for tags.
+In addition, multiple keys in GET parameters are also allowed, such as [https://your.site/tagmark/?tags=sec AND recon AND (Python OR Golang)&github_repo_info.count_star=3000](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Golang)&github_repo_info.count_star=3000) (the real URL of this link is my tagmark page in my blog - pwnfan), which adds an additional filter condition of "Github Star number >= 3000" on the basis of the original filter condition for tags.
 
 At last, some people may worry about the security of this GET parameter, because it is implemented by pure frontend code without using back-end code. The easiest way to implement it in a pure frontend way is to use Javascript to get the GET parameters and then call the eval function to call the filter function for filtering. Indeed, this is what I did at first. I know that using eval will introduce reflected XSS, but I couldn't find a way to both avoid this security issue and implement this pure frontend Filter for a long time. I'm not familiar with frontend development, so it took me a long time to find a good solution. Now it seems that this kind of attack through GET parameters can be avoided. If you find my implementation still has security issues, please let me know in time, thanks very much.
 

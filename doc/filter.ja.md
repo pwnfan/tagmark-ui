@@ -26,7 +26,9 @@
 
 典型的な使用例：
 
-`セキュリティ` (<u>security</u>, tag `sec`) の `偵察` (<u>reconnaissance</u>, tag `recon`) ツールをフィルタリングしたい場合、_**かつ**_ <u>Python</u>（tag `python`）_**または**_ <u>Golang</u>（tag `go`）で実装されている場合、Tags列のフィルター入力ボックスに`sec AND recon AND (Python OR Go)`を入力します。
+`セキュリティ` (<u>security</u>, tag `sec`) の `偵察` (<u>reconnaissance</u>, tag `recon`) ツールをフィルタリングしたい場合、_**かつ**_ <u>Python</u>（tag `python`）_**または**_ <u>Golang</u>（tag `golang`）で実装されている場合、Tags列のフィルター入力ボックスに`sec AND recon AND (Python OR Golang)`を入力します。
+
+それは、`tag` が大文字小文字を区別しないことを強調する必要があります。したがって、上記の例では、フィルターに `sec AND recon AND (python OR golang)` を入力することで同じ結果を得ることができます。
 
 ### >= フィルター
 
@@ -42,7 +44,7 @@ Tagsカラムにタグの入力を支援する機能が追加されました。�
 
 ## URL GET パラメータを介したフィルターの使用
 
-tagmark-uiは、純粋なフロントエンドJavaScriptを介してフィルターの呼び出しを実装しました。したがって、前のフィルター例の結果は[https://your.site/tagmark/?tags=sec AND recon AND (Python OR Go)](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Go))（このリンクの実際のURLは私のブログ - pwnfan のタグマークページです）を介してアクセスできます。
+tagmark-uiは、純粋なフロントエンドJavaScriptを介してフィルターの呼び出しを実装しました。したがって、前のフィルター例の結果は[https://your.site/tagmark/?tags=sec AND recon AND (Python OR Golang)](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Golang))（このリンクの実際のURLは私のブログ - pwnfan のタグマークページです）を介してアクセスできます。
 
 この機能は、特定の指定されたタグを含むURLなど、他の人と特定のフィルターされたURLサブセットを簡単に共有するためのものです。
 
@@ -64,7 +66,7 @@ tagmark-uiは、純粋なフロントエンドJavaScriptを介してフィルタ
 - `Date Added`: `time_added`
 - `Comment`: `comment`
 
-さらに、GETパラメータで複数のキーを使用することもできます。例えば[https://your.site/tagmark/?tags=sec AND recon AND (Python OR Go)&github_repo_info.count_star=3000](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Go)&github_repo_info.count_star=3000)（このリンクの実際のURLは私のブログ - pwnfan の tagmark ページです）は、元のタグフィルタ条件に加えて「Github Star 数 >= 3000」のフィルタ条件を追加します。
+さらに、GETパラメータで複数のキーを使用することもできます。例えば[https://your.site/tagmark/?tags=sec AND recon AND (Python OR Golang)&github_repo_info.count_star=3000](https://pwnfan.github.io/tagmark/?tags=sec%20AND%20recon%20AND%20(Python%20OR%20Golang)&github_repo_info.count_star=3000)（このリンクの実際のURLは私のブログ - pwnfan の tagmark ページです）は、元のタグフィルタ条件に加えて「Github Star 数 >= 3000」のフィルタ条件を追加します。
 
 最後に、このGETパラメータのセキュリティに関して、人々は心配するかもしれません。なぜなら、バックエンドコードを使用せずに純粋なフロントエンドコードで実装されているからです。この純粋なフロントエンドで実装するための最も簡単な方法は、Javascriptを使用してGETパラメータを取得し、eval関数を呼び出してフィルタ関数を呼び出すことです。実際、これが私が最初に行ったことです。evalを使用すると反射型XSSが発生することを知っていますが、このセキュリティの問題を回避しながら、この純粋なフロントエンドのフィルタを実装する方法をずっと見つけることができませんでした。私はフロントエンド開発に上手くないので、良い解決策を見つけるのに長い時間がかかりました。今のところ、GETパラメータを介したこのような攻撃を回避することができるようです。もし私の実装にまだセキュリティ上の問題があると感じた場合は、お早めにお知らせください。ありがとうございます。
 
