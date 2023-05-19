@@ -108,7 +108,7 @@ function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
         if (!cellValue) return false;
 
         // case insensitive and trim
-        let headerValueParts = headerValue.trim().split(/\b(OR|AND)\b/);
+        let headerValueParts = headerValue.trim().split(/\b(OR|AND|NOT)\b/);
         let checkHeaderValueParts = Array();
         headerValueParts.forEach((headerValuePart) => {
             headerValuePart = headerValuePart.trim();
@@ -116,8 +116,11 @@ function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
                 checkHeaderValueParts.push("&&");
             } else if (headerValuePart === "OR") {
                 checkHeaderValueParts.push("||");
+            } else if (headerValuePart === "NOT") {
+                checkHeaderValueParts.push("!");
             } else {
                 let keyword = extractKeyword(headerValuePart);
+                if (!keyword.trim()) return;
                 if (Array.isArray(cellValue)) {
                     if (cellValue.length === 0) return false;
                     checkHeaderValueParts.push(

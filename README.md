@@ -63,4 +63,4 @@ tagmark-ui has implemented the invocation of filters through pure frontend Javas
 ## TODO
 
 - [x] fix overlay doc `<a>` style
-- [ ] implement NOT keyword in the filter
+- [x] implement NOT keyword in the filter

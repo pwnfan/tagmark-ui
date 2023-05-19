@@ -20,6 +20,7 @@ The following keywords (operators) are defined in Advanced Filter:
 
 - `AND`: Must be uppercase, indicating "and" operation, similar to the `&&` logical operator in Javascript.
 - `OR`: Must be uppercase, indicating "or" operation, similar to the `||` logical operator in Javascript.
+- `NOT`: Must be uppercase, indicating "not" operation, similar to the `!` logical operator in Javascript.
 - `(` and `)`: Used to combine multiple expressions and control their priority, what is consistent with most programming languages.
 
 **No quotation marks (`"` or `'`) are required in the string entered in Advanced Filter.**
