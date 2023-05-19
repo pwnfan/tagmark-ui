@@ -57,6 +57,11 @@ function initData() {
                         obj.github_repo_info.time_last_release = new Date(
                             Date.parse(obj.github_repo_info.time_last_release)
                         ).toLocaleString("zh-CN", DATA_OPTIONS);
+
+                        if(!obj.github_repo_info.is_archived){
+                            obj.github_repo_info.is_archived = false;
+                        }
+                        obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
                     }
 
                     if (obj.is_github_url) {
@@ -434,6 +439,7 @@ function createTable() {
                     field: "github_repo_info.is_archived",
                     headerHozAlign: "center",
                     visible: false,
+                    hozAlign:"center",
                     headerFilter: "input",
                     headerFilterPlaceholder: "=",
                     headerFilterFunc: "=",
