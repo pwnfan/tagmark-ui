@@ -485,8 +485,8 @@ function createTable() {
         // instead we should caculate the value then set to maxHeight
         maxHeight: `${0.9 * window.innerHeight}px`,
         pagination: true,
-        paginationSize: 100,
-        paginationSizeSelector: [50, 100, 1000],
+        paginationSize: 1000,
+        paginationSizeSelector: [100, 1000, 10000, 100000],
     });
 }
 
