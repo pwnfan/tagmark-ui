@@ -1,5 +1,13 @@
 # TagMark UI
 
+- [TagMark UI](#tagmark-ui)
+  - [What is TagMark](#what-is-tagmark)
+  - [Setup and Usage](#setup-and-usage)
+  - [Using Filters Through URL GET Parameters](#using-filters-through-url-get-parameters)
+  - [Acknowledgments](#acknowledgments)
+  - [Known Issues](#known-issues)
+  - [TODO](#todo)
+
 ## What is TagMark
 
 TagMark is a tag based browser bookmark solution for developers.
