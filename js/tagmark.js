@@ -659,8 +659,8 @@ function displayFilterDoc() {
 // Wait for DOM to load and then fetch and initialize data, create table, bind events
 document.addEventListener("DOMContentLoaded", () => {
     initData()
-        .then((data) => {
-            table = createTable(data);
+        .then(() => {
+            table = createTable();
             table.on("tableBuilt", function () {
                 // set header filter value according to the url params
                 let queryParams = new URLSearchParams(window.location.search);
@@ -670,6 +670,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 ] of queryParams.entries()) {
                     this.setHeaderFilterValue(filterFiled, filterValue);
                 }
+
+                // set bookmark count
+                let bookmarkCountSpan = document.getElementById("bookmark-count");
+                bookmarkCountSpan.innerText = tabulatorData.length;
 
                 // add events
                 let allTagsOverlay = document.getElementById(
