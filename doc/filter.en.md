@@ -37,7 +37,7 @@ Currently, in addition to Advanced Filter, there is only `>= Filter` in tagmark-
 
 ## Quick Tag Inputting
 
-A feature of assisting inputting tags has been added to the Tags column. When you click any tag with the mouse, it will automatically enter the tag into the input box of the header filter of the Tags column.
+A feature of assisting inputting tags has been added to the `Tags` column. When you right-click any tag with the mouse(left-click will display the  definition of the tag), it will automatically enter the tag into the input box of the header filter of the Tags column.
 
 In addition, this quick inputting method is also effective on the `All Tags` overlay.
 

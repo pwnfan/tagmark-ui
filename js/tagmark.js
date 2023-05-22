@@ -58,7 +58,7 @@ function initData() {
                             Date.parse(obj.github_repo_info.time_last_release)
                         ).toLocaleString("zh-CN", DATA_OPTIONS);
 
-                        if(!obj.github_repo_info.is_archived){
+                        if (!obj.github_repo_info.is_archived) {
                             obj.github_repo_info.is_archived = false;
                         }
                         obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
@@ -439,7 +439,7 @@ function createTable() {
                     field: "github_repo_info.is_archived",
                     headerHozAlign: "center",
                     visible: false,
-                    hozAlign:"center",
+                    hozAlign: "center",
                     headerFilter: "input",
                     headerFilterPlaceholder: "=",
                     headerFilterFunc: "=",
@@ -490,9 +490,15 @@ function createTable() {
     });
 }
 
-function handleTagMouseover(event) {
+function showTagDefinition(event) {
     let tagDefinitionDiv = document.getElementById("tag-definition");
-    this.style.cursor = "pointer";
+
+    // toggle display
+    if (!["none", ""].includes(tagDefinitionDiv.style.display)) {
+        tagDefinitionDiv.style.display = "none";
+        return;
+    }
+
     let tag = this.innerText;
     let tagCountSub = this.querySelector("sub");
     if (tagCountSub) {
@@ -511,24 +517,60 @@ function handleTagMouseover(event) {
     }
 
     let boundingRect = this.getBoundingClientRect();
-    tagDefinitionDiv.style.top =
-        boundingRect.bottom + window.pageYOffset + "px";
-    tagDefinitionDiv.style.left =
-        (boundingRect.left + boundingRect.right) / 2 +
-        window.pageXOffset +
-        "px";
+    let windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+    let windowWidth = window.innerWidth || document.documentElement.clientWidth;
 
+    // set Y postion of tagDefinitionDiv
+    if (boundingRect.top + boundingRect.height / 2 < windowHeight / 2) {
+        tagDefinitionDiv.style.top = `${
+            boundingRect.bottom + window.pageYOffset
+        }px`;
+        tagDefinitionDiv.style.bottom = "auto";
+    } else {
+        tagDefinitionDiv.style.top = "auto";
+        tagDefinitionDiv.style.bottom = `${
+            windowHeight - boundingRect.top + window.pageYOffset
+        }px`;
+    }
+
+    // set X position of tagDefinitionDiv
+    if (boundingRect.left + boundingRect.width / 2 < windowWidth / 2) {
+        tagDefinitionDiv.style.left = `${
+            (boundingRect.left + boundingRect.right) / 2 + window.pageXOffset
+        }px`;
+        tagDefinitionDiv.style.right = "auto";
+    } else {
+        tagDefinitionDiv.style.left = "auto";
+        tagDefinitionDiv.style.right = `${
+            windowWidth -
+            (boundingRect.left + boundingRect.right) / 2 +
+            window.pageXOffset
+        }px`;
+    }
     tagDefinitionDiv.style.display = "block";
+
+    // check div top overflow and reset it
+    tagDefinitionDivBoundingRect = tagDefinitionDiv.getBoundingClientRect();
+    if (tagDefinitionDivBoundingRect.top < 0) {
+        tagDefinitionDiv.style.top = `${window.pageYOffset}px`;
+    }
+    if (tagDefinitionDivBoundingRect.bottom > window.innerHeight) {
+        tagDefinitionDiv.style.bottom = `${window.pageYOffset}px`;
+    }
+}
+
+function startFadeTag(event) {
+    this.style.cursor = "pointer";
     this.classList.toggle("fa-fade");
 }
 
-function handleTagMouseout(event) {
-    let tagDefinitionDiv = document.getElementById("tag-definition");
-    tagDefinitionDiv.style.display = "none";
+function stopFadeTag(event) {
     this.classList.toggle("fa-fade");
 }
 
-function handleTagClick(event) {
+function addTagIntoHeaderFilter(event) {
+    event.preventDefault();
     let tag = this.innerText;
     let tagCountSub = this.querySelector("sub");
     if (tagCountSub) {
@@ -617,9 +659,10 @@ function addTags(tags, withCount = false, sort = "original") {
         }
         tagDiv.appendChild(tagSpan);
 
-        tagSpan.addEventListener("mouseover", handleTagMouseover);
-        tagSpan.addEventListener("mouseout", handleTagMouseout);
-        tagSpan.addEventListener("click", handleTagClick);
+        tagSpan.addEventListener("click", showTagDefinition);
+        tagSpan.addEventListener("mouseover", startFadeTag);
+        tagSpan.addEventListener("mouseout", stopFadeTag);
+        tagSpan.addEventListener("contextmenu", addTagIntoHeaderFilter); // right click
     });
     return tagDiv;
 }
@@ -672,7 +715,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 // set bookmark count
-                let bookmarkCountSpan = document.getElementById("bookmark-count");
+                let bookmarkCountSpan = document.getElementById(
+                    "bookmark-count"
+                );
                 bookmarkCountSpan.innerText = tabulatorData.length;
 
                 // add events

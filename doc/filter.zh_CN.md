@@ -38,7 +38,7 @@ Advanced Filter 中定义了如下的关键字（运算符）:
 
 ## 辅助输入 tag
 
-在 `Tags` 列加入了辅助输入 tag 功能，当用鼠标单击任何一个 tag 时，会将此 tag 自动输入到 Tags 列的 header filter 的 input 输入框中。
+在 `Tags` 列加入了辅助输入 tag 功能，当用鼠标右键单击任何一个 tag 时（鼠标左键单击是显示 tag 的含义），会将此 tag 自动输入到 Tags 列的 header filter 的 input 输入框中。
 
 另外，在 `All Tags` 浮层页面，这种辅助输入 tag 的方式同样有效：
 
