@@ -647,6 +647,7 @@ function addTags(tags, withCount = false, sort = "original") {
         tagSpan.classList.add("tag-span");
         tagSpan.style.backgroundColor = `#${rainbow.colorAt(count)}`;
         tagSpan.innerText = `${tag}`;
+        tagSpan.title = "Left Click to show definition of this tag.\nRight Click to add this tag into the header filter input box."
         if (withCount) {
             let tagCountSub = document.createElement("sub");
             tagSpan.appendChild(tagCountSub);
