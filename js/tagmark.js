@@ -13,7 +13,7 @@ const tagDefinitionsUrl = "data/tag_definitions.json";
 const fitlerDocUrlTempl = "doc/filter.{language}.md";
 
 const customizedHeaderFilterPlaceholder =
-    "click here with CTRL/CMD pressed for help...";
+    "Press CTRL/CMD and click here for help...";
 
 var tabulatorData = Array();
 var tagDefinitions;
@@ -647,7 +647,8 @@ function addTags(tags, withCount = false, sort = "original") {
         tagSpan.classList.add("tag-span");
         tagSpan.style.backgroundColor = `#${rainbow.colorAt(count)}`;
         tagSpan.innerText = `${tag}`;
-        tagSpan.title = "Left Click to show definition of this tag.\nRight Click to add this tag into the header filter input box."
+        tagSpan.title =
+            "Left Click to show definition of this tag.\nRight Click to add this tag into the header filter input box.";
         if (withCount) {
             let tagCountSub = document.createElement("sub");
             tagSpan.appendChild(tagCountSub);
