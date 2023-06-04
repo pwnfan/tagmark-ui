@@ -476,7 +476,7 @@ function createTable() {
         },
     ];
 
-    return new Tabulator("#example-table", {
+    return new Tabulator("#tagmark-table", {
         data: tabulatorData,
         columns: columns,
         layout: "fitDataFill",
