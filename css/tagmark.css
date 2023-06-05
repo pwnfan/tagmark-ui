@@ -4,7 +4,11 @@
 }
 
 #tagmark-table {
-    font-size: 0.9em;
+    font-size: 0.8em;
+}
+
+.tabulator {
+    overflow: visible;
 }
 
 #tag-definition::-webkit-scrollbar,
@@ -74,7 +78,7 @@ body {
     margin-top: 0.2em;
     margin-right: 0.2em;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 #all-tags-show-switch-container {
@@ -93,7 +97,7 @@ body {
     border-radius: 5px;
     z-index: 1000;
     display: none;
-    font-size: 0.9em;
+    font-size: 0.8em;
     overflow: scroll;
 }
 
@@ -244,10 +248,10 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 10px 0;
+    padding-bottom: 10px;
     background-color: #333;
     color: #999;
-    font-size: 0.875em;
+    font-size: 0.8em;
     text-align: center;
 }
 
