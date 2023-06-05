@@ -3,6 +3,10 @@
     --tag--max-witdh: auto;
 }
 
+#tagmark-table {
+    font-size: 0.9em;
+}
+
 #tag-definition::-webkit-scrollbar,
 #all-tags-show-switch-container-title::-webkit-scrollbar {
     display: none;
@@ -121,7 +125,7 @@ body {
 }
 
 .overlay sub {
-    font-size: x-small;
+    font-size: 0.7em;
 }
 
 .modal {
@@ -195,7 +199,7 @@ body {
     background: transparent;
     border: none;
     color: #ccc;
-    font-size: 24px;
+    font-size: 2em;
     cursor: pointer;
     margin-left: auto;
 }
