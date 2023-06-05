@@ -17,9 +17,10 @@ const customizedHeaderFilterPlaceholder =
 
 var tabulatorData = Array();
 var tagDefinitions;
-var tagsCount;
+var tagsCounts;
 var maxTagCount;
 var minTagCount;
+var githubItemCount = 0;
 var rainbow = new Rainbow();
 var docs = {
     en: {
@@ -65,6 +66,7 @@ function initData() {
                     }
 
                     if (obj.is_github_url) {
+                        githubItemCount += 1;
                         if (!obj.github_repo_info.count_star) {
                             obj.github_repo_info.count_star = 0;
                         }
@@ -87,14 +89,14 @@ function initData() {
     return Promise.all([fetchTabulatorDataPromise, fetchTagDefinitionsPromise])
         .then((data) => {
             [tabulatorData, tagDefinitions] = data;
-            tagsCount = tabulatorData.reduce((counts, item) => {
+            tagsCounts = tabulatorData.reduce((counts, item) => {
                 item.tags.forEach((tag) => {
                     counts[tag] = (counts[tag] || 0) + 1;
                 });
                 return counts;
             }, {});
-            maxTagCount = Math.max(...Object.values(tagsCount));
-            minTagCount = Math.min(...Object.values(tagsCount));
+            maxTagCount = Math.max(...Object.values(tagsCounts));
+            minTagCount = Math.min(...Object.values(tagsCounts));
             rainbow.setNumberRange(minTagCount, maxTagCount);
             rainbow.setSpectrum("Gainsboro", "Red");
 
@@ -630,9 +632,9 @@ function addTags(tags, withCount = false, sort = "original") {
         tags = tags.sort();
     } else if (sort === "count") {
         tags = tags.sort((a, b) => {
-            if (tagsCount[b] !== tagsCount[a]) {
+            if (tagsCounts[b] !== tagsCounts[a]) {
                 // If count is not equal, sort by count value in descending order
-                return tagsCount[b] - tagsCount[a];
+                return tagsCounts[b] - tagsCounts[a];
             } else {
                 // If count is equal, sort by element name in ascending order
                 return a.localeCompare(b);
@@ -641,7 +643,7 @@ function addTags(tags, withCount = false, sort = "original") {
     }
 
     tags.forEach((tag) => {
-        let count = tagsCount[tag];
+        let count = tagsCounts[tag];
         let tagSpan = document.createElement("span");
 
         tagSpan.classList.add("tag-span");
@@ -716,11 +718,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     this.setHeaderFilterValue(filterFiled, filterValue);
                 }
 
-                // set bookmark count
+                // set statistics
                 let bookmarkCountSpan = document.getElementById(
                     "bookmark-count"
                 );
                 bookmarkCountSpan.innerText = tabulatorData.length;
+                let githubBookmarkCountSpan = document.getElementById(
+                    "github-bookmark-count"
+                );
+                githubBookmarkCountSpan.innerText = githubItemCount;
+                let tagCountSpan = document.getElementById(
+                    "tag-count"
+                );
+                tagCountSpan.innerText = Object.keys(tagsCounts).length;
 
                 // add events
                 let allTagsOverlay = document.getElementById(
@@ -762,7 +772,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     handleAllTagsShowSwitchContainerMouseout
                 );
                 allTagsDiv.appendChild(
-                    addTags(Object.keys(tagsCount), true, "count")
+                    addTags(Object.keys(tagsCounts), true, "count")
                 );
                 allTagsOverlayCloseBtn.addEventListener("click", () => {
                     allTagsOverlay.classList.remove("active");
@@ -771,7 +781,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     let sort = event.target.value;
                     allTagsDiv.innerHTML = "";
                     allTagsDiv.appendChild(
-                        addTags(Object.keys(tagsCount), true, sort)
+                        addTags(Object.keys(tagsCounts), true, sort)
                     );
                 });
 
