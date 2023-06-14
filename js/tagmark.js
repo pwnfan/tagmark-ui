@@ -65,7 +65,7 @@ function initData() {
                         obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
                     }
 
-                    if (obj.is_github_url) {
+                    if (obj.is_github_url && obj.github_repo_info) {
                         githubItemCount += 1;
                         if (!obj.github_repo_info.count_star) {
                             obj.github_repo_info.count_star = 0;
