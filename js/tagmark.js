@@ -440,7 +440,6 @@ function createTable() {
                     title: "Archived",
                     field: "github_repo_info.is_archived",
                     headerHozAlign: "center",
-                    visible: false,
                     hozAlign: "center",
                     headerFilter: "input",
                     headerFilterPlaceholder: "=",
