@@ -486,6 +486,9 @@ function createTable() {
         // we can not set maxHeight to "90%", this will cause the header frozen not work
         // instead we should caculate the value then set to maxHeight
         maxHeight: `${0.9 * window.innerHeight}px`,
+        initialSort: [
+            {column: "github_repo_info.time_last_commit", dir: "desc"},
+        ],
         pagination: true,
         paginationSize: 1000,
         paginationSizeSelector: [100, 1000, 10000, 100000],
