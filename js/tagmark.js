@@ -274,6 +274,33 @@ function createTable() {
             frozen: true,
             headerHozAlign: "center",
             formatter: "rownum",
+            headerSort: false,
+            titleFormatter: function (cell, formatterParams) {
+                let title = cell.getValue();
+
+                let div = document.createElement("div");
+                let toTop = document.createElement("div");
+                let toBottom = document.createElement("div");
+
+                toTop.id = "to-top";
+                toBottom.id = "to-bottom";
+
+                toTop.innerText = "⏫";
+                toBottom.innerText = "⏬";
+
+                toTop.style.cursor = "pointer";
+                toBottom.style.cursor = "pointer";
+
+                toTop.classList.add("fa-fade");
+                toBottom.classList.add("fa-fade");
+
+                toTop.title = "scroll to top";
+                toBottom.title = "scroll to bottom";
+
+                div.innerHTML = `${toTop.outerHTML} ${toBottom.outerHTML}`;
+
+                return `${title} ${div.outerHTML}`;
+            },
         },
         {
             title: "Title",
@@ -295,9 +322,9 @@ function createTable() {
             field: "url",
             width: "15%",
             formatter: "link",
-            formatterParams:{
-                labelField:"url",
-                target:"_blank",
+            formatterParams: {
+                labelField: "url",
+                target: "_blank",
             },
             frozen: true,
             headerHozAlign: "center",
@@ -487,12 +514,12 @@ function createTable() {
         // instead we should caculate the value then set to maxHeight
         maxHeight: `${0.9 * window.innerHeight}px`,
         initialSort: [
-            {column: "github_repo_info.time_last_commit", dir: "desc"},
+            { column: "github_repo_info.time_last_commit", dir: "desc" },
         ],
         pagination: true,
         paginationSize: 10000,
         paginationSizeSelector: [100, 1000, 10000, 100000],
-        paginationCounter:"rows",
+        paginationCounter: "rows",
     });
 }
 
@@ -731,9 +758,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "github-bookmark-count"
                 );
                 githubBookmarkCountSpan.innerText = githubItemCount;
-                let tagCountSpan = document.getElementById(
-                    "tag-count"
-                );
+                let tagCountSpan = document.getElementById("tag-count");
                 tagCountSpan.innerText = Object.keys(tagsCounts).length;
 
                 // add events
@@ -763,6 +788,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 let filterDocLanguageSelect = document.getElementById(
                     "filter-doc-language-select"
                 );
+
+                let toTop = document.getElementById("to-top");
+                let toBottom = document.getElementById("to-bottom");
 
                 allTagsShowSwitchContainer.addEventListener("click", () => {
                     allTagsOverlay.classList.toggle("active");
@@ -809,6 +837,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     "change",
                     displayFilterDoc
                 );
+
+                toTop.addEventListener("click", () => {
+                    table.scrollToRow(table.getRowFromPosition(1), "top", true);
+                });
+                toBottom.addEventListener("click", () => {
+                    table.scrollToRow(
+                        table.getRowFromPosition(
+                            Math.min(table.getDataCount("active"), table.getPageSize())
+                        ),
+                        "top",
+                        true
+                    );
+                });
             });
         })
         .catch((error) => console.error(error.message));
