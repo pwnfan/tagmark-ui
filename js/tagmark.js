@@ -98,7 +98,7 @@ function initData() {
             maxTagCount = Math.max(...Object.values(tagsCounts));
             minTagCount = Math.min(...Object.values(tagsCounts));
             rainbow.setNumberRange(minTagCount, maxTagCount);
-            rainbow.setSpectrum("Gainsboro", "Red");
+            rainbow.setSpectrum("white", "Red");
 
             return;
         })
