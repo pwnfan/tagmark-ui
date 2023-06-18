@@ -491,6 +491,7 @@ function createTable() {
         pagination: true,
         paginationSize: 1000,
         paginationSizeSelector: [100, 1000, 10000, 100000],
+        paginationCounter:"rows",
     });
 }
 
