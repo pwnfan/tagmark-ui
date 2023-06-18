@@ -294,9 +294,10 @@ function createTable() {
             title: "URL",
             field: "url",
             width: "15%",
-            formatter: "textarea",
-            cellClick: function (e, cell) {
-                window.open(cell.getValue());
+            formatter: "link",
+            formatterParams:{
+                labelField:"url",
+                target:"_blank",
             },
             frozen: true,
             headerHozAlign: "center",
@@ -489,7 +490,7 @@ function createTable() {
             {column: "github_repo_info.time_last_commit", dir: "desc"},
         ],
         pagination: true,
-        paginationSize: 1000,
+        paginationSize: 10000,
         paginationSizeSelector: [100, 1000, 10000, 100000],
         paginationCounter:"rows",
     });
