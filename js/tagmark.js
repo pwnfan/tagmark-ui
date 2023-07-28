@@ -125,7 +125,10 @@ function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
                 checkHeaderValueParts.push("||");
             } else if (headerValuePart === "NOT") {
                 checkHeaderValueParts.push("!");
-            } else {
+            } else if (isOnlyOpenParentheses(headerValuePart)) {
+                checkHeaderValueParts.push(headerValuePart);
+            }
+            else {
                 let keyword = extractKeyword(headerValuePart);
                 if (!keyword.trim()) return;
                 if (Array.isArray(cellValue)) {
@@ -156,9 +159,15 @@ function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
         return checkHeaderValueFunc();
     }
 
+    function isOnlyOpenParentheses(str) {
+        const charSet = new Set(str);
+
+        return charSet.size === 1 && charSet.has("(");
+    }
+
     function extractKeyword(headerValuePart) {
         /*
-         * This function takes a string inputStr as its argument and extracts the text between the
+         * This function takes a string headerValuePart as its argument and extracts the text between the
          * first opening parenthesis '(', and the last closing parenthesis ')' in the string. The
          * extracted text is then returned as the output of the function.
          */
@@ -556,30 +565,26 @@ function showTagDefinition(event) {
 
     // set Y postion of tagDefinitionDiv
     if (boundingRect.top + boundingRect.height / 2 < windowHeight / 2) {
-        tagDefinitionDiv.style.top = `${
-            boundingRect.bottom + window.pageYOffset
-        }px`;
+        tagDefinitionDiv.style.top = `${boundingRect.bottom + window.pageYOffset
+            }px`;
         tagDefinitionDiv.style.bottom = "auto";
     } else {
         tagDefinitionDiv.style.top = "auto";
-        tagDefinitionDiv.style.bottom = `${
-            windowHeight - boundingRect.top + window.pageYOffset
-        }px`;
+        tagDefinitionDiv.style.bottom = `${windowHeight - boundingRect.top + window.pageYOffset
+            }px`;
     }
 
     // set X position of tagDefinitionDiv
     if (boundingRect.left + boundingRect.width / 2 < windowWidth / 2) {
-        tagDefinitionDiv.style.left = `${
-            (boundingRect.left + boundingRect.right) / 2 + window.pageXOffset
-        }px`;
+        tagDefinitionDiv.style.left = `${(boundingRect.left + boundingRect.right) / 2 + window.pageXOffset
+            }px`;
         tagDefinitionDiv.style.right = "auto";
     } else {
         tagDefinitionDiv.style.left = "auto";
-        tagDefinitionDiv.style.right = `${
-            windowWidth -
+        tagDefinitionDiv.style.right = `${windowWidth -
             (boundingRect.left + boundingRect.right) / 2 +
             window.pageXOffset
-        }px`;
+            }px`;
     }
     tagDefinitionDiv.style.display = "block";
 
