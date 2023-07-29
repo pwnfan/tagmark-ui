@@ -67,7 +67,7 @@ function initData() {
                         }
                         obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
                     }
- 
+
                     if (obj.is_github_url && obj.github_repo_info) {
                         githubItemCount += 1;
                         if (!obj.github_repo_info.count_star) {
@@ -110,7 +110,7 @@ function initData() {
 }
 
 function formatTags(tagsInfo) {
-    for (const key in  tagsInfo){
+    for (const key in tagsInfo) {
         tagsInfo[key]["tag"] = key
         tagsInfo[key]["formatted_tag"] = tagsInfo[key]["prefer_format"].format(tagsInfo[key])
     }
@@ -750,6 +750,49 @@ function displayFilterDoc() {
         filterDocDiv.innerHTML = marked.parse(doc);
     }
 }
+
+// Dynamically load the script regardless of the user's choice
+function loadStatisticsScript(
+) {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js";
+    script.crossOrigin = "anonymous";
+    script.referrerPolicy = "no-referrer";
+    document.head.appendChild(script);
+}
+
+window.addEventListener("load", function () {
+    let ifLoadStatisticsScript = Cookies.get("ifLoadStatisticsScript");
+
+    if (ifLoadStatisticsScript === undefined) {
+        Swal.fire({
+            title: "Privacy Confirm",
+            text: "Do you want to load the script (powered by busuanzi) for showing page view statistics?",
+            icon: "warning",
+            showCancelButton: true,
+            color: "white",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            ifLoadStatisticsScript = result.isConfirmed
+            Cookies.set("ifLoadStatisticsScript", ifLoadStatisticsScript);
+            if (ifLoadStatisticsScript) {
+                loadStatisticsScript();
+            }
+        });
+
+    }
+    else {
+        // convert into Boolean
+        ifLoadStatisticsScript = JSON.parse(ifLoadStatisticsScript)
+    }
+
+    if (ifLoadStatisticsScript) {
+        loadStatisticsScript();
+    }
+});
 
 // Wait for DOM to load and then fetch and initialize data, create table, bind events
 document.addEventListener("DOMContentLoaded", () => {
