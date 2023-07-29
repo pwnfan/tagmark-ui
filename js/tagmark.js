@@ -1,3 +1,6 @@
+// see https://github.com/davidchambers/string-format#method-mode
+format.extend(String.prototype, {})
+
 // Define date format options
 const DATA_OPTIONS = {
     year: "numeric",
@@ -9,14 +12,14 @@ const DATA_OPTIONS = {
 };
 
 const uiDataUrl = "data/tagmark_ui_data.jsonl";
-const tagDefinitionsUrl = "data/tag_definitions.json";
+const tagsUrl = "data/tags.json";
 const fitlerDocUrlTempl = "doc/filter.{language}.md";
 
 const customizedHeaderFilterPlaceholder =
     "Press CTRL/CMD and click here for help...";
 
 var tabulatorData = Array();
-var tagDefinitions;
+var tagsInfo;
 var tagsCounts;
 var maxTagCount;
 var minTagCount;
@@ -64,7 +67,7 @@ function initData() {
                         }
                         obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
                     }
-
+ 
                     if (obj.is_github_url && obj.github_repo_info) {
                         githubItemCount += 1;
                         if (!obj.github_repo_info.count_star) {
@@ -82,13 +85,14 @@ function initData() {
                 })
         );
 
-    let fetchTagDefinitionsPromise = fetch(tagDefinitionsUrl).then((response) =>
+    let fetchTagDefinitionsPromise = fetch(tagsUrl).then((response) =>
         response.json()
     );
 
     return Promise.all([fetchTabulatorDataPromise, fetchTagDefinitionsPromise])
         .then((data) => {
-            [tabulatorData, tagDefinitions] = data;
+            [tabulatorData, tagsInfo] = data;
+            tagsInfo = formatTags(tagsInfo);
             tagsCounts = tabulatorData.reduce((counts, item) => {
                 item.tags.forEach((tag) => {
                     counts[tag] = (counts[tag] || 0) + 1;
@@ -103,6 +107,14 @@ function initData() {
             return;
         })
         .catch((error) => console.error(error.message));
+}
+
+function formatTags(tagsInfo) {
+    for (const key in  tagsInfo){
+        tagsInfo[key]["tag"] = key
+        tagsInfo[key]["formatted_tag"] = tagsInfo[key]["prefer_format"].format(tagsInfo[key])
+    }
+    return tagsInfo;
 }
 
 function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
@@ -548,7 +560,7 @@ function showTagDefinition(event) {
         tag = tag.replace(regex, "");
     }
 
-    let tagDefinitionText = tagDefinitions[tag];
+    let tagDefinitionText = tagsInfo[tag]['definition'];
     if (!tagDefinitionText) {
         console.warn(
             `definition of tag "${tag}" is missing, please define it.`
