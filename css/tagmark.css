@@ -70,7 +70,7 @@ body {
     white-space: normal;
 }
 
-.tag-span,
+.tag-container,
 .topic-span {
     display: inline-block;
     color: black;
@@ -173,11 +173,15 @@ body {
     transform: translateX(-50%);
 }
 
-#all-tags-sort-fieldset {
+#all-tags-show-container {
+    margin-left: 20px;
+}
+
+#all-tags-sort-fieldset,
+#all-tags-show-fieldset {
     display: inline-block;
     margin: 0;
     padding: 2px 2px;
-    margin-left: 10px;
     border-radius: 5px;
     cursor: pointer;
 }

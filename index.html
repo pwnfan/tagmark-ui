@@ -21,8 +21,11 @@
             integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
-        >
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css"
+        />
         <script
             src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.5/dist/js/tabulator.min.js"
             crossorigin="anonymous"
@@ -34,7 +37,17 @@
             referrerpolicy="no-referrer"
         ></script>
         <script
-            src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+            src="https://cdn.jsdelivr.net/npm/marked@5/lib/marked.umd.min.js"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id@3/lib/index.umd.min.js"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/marked-mangle@1/lib/index.umd.min.js"
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
@@ -51,7 +64,7 @@
         ></script>
         <script
             src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"
-            integrity="sha256-mW1wrhuKp2Cl0DCVr/7+GTdl168ZrmB6FayoMAlSmH0=" 
+            integrity="sha256-mW1wrhuKp2Cl0DCVr/7+GTdl168ZrmB6FayoMAlSmH0="
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
@@ -77,29 +90,57 @@
                         <button class="close-btn">&times;</button>
                     </div>
                 </div>
-                <div class="modal-menu">
-                    <span>sort tags by: </span>
-                    <fieldset id="all-tags-sort-fieldset">
-                        <span>
-                            <input
-                                type="radio"
-                                id="tags-sort-by-count"
-                                name="tags-sort"
-                                value="count"
-                                checked
-                            />
-                            <label for="tags-sort-by-count">count</label>
-                        </span>
-                        <span>
-                            <input
-                                type="radio"
-                                id="tags-sort-by-name"
-                                name="tags-sort"
-                                value="name"
-                            />
-                            <label for="tags-sort-by-name">name</label>
-                        </span>
-                    </fieldset>
+                <div class="modal-menu" id="all-tags-menu">
+                    <div id="all-tags-sort-container">
+                        <span>sort: </span>
+                        <fieldset id="all-tags-sort-fieldset">
+                            <span>
+                                <input
+                                    type="radio"
+                                    id="tags-sort-by-count"
+                                    name="tags-sort"
+                                    value="count"
+                                    checked
+                                />
+                                <label for="tags-sort-by-count">count</label>
+                            </span>
+                            <span>
+                                <input
+                                    type="radio"
+                                    id="tags-sort-by-name"
+                                    name="tags-sort"
+                                    value="name"
+                                />
+                                <label for="tags-sort-by-name">name</label>
+                            </span>
+                        </fieldset>
+                    </div>
+                    <div id="all-tags-show-container">
+                        <span>show: </span>
+                        <fieldset id="all-tags-show-fieldset">
+                            <span>
+                                <input
+                                    type="radio"
+                                    id="tags-show-tag"
+                                    name="tags-show-name"
+                                    value="tag"
+                                />
+                                <label for="tags-show-tag">tag</label>
+                            </span>
+                            <span>
+                                <input
+                                    type="radio"
+                                    id="tags-show-formatted-name"
+                                    name="tags-show-name"
+                                    value="formatted_name"
+                                    checked
+                                />
+                                <label for="tags-show-formatted-name"
+                                    >formatted name</label
+                                >
+                            </span>
+                        </fieldset>
+                    </div>
                     <span
                         class="github-link"
                         onclick="window.open('data/tag_definitions.json')"
@@ -157,11 +198,12 @@
                 <div class="statistics">
                     <i class="fa-solid fa-star"></i>
                     Bookmarks: <span id="bookmark-count"></span>
-                    | Github Bookmarks: 
+                    | Github Bookmarks:
                     <span id="github-bookmark-count"></span>
-                    | Tags: 
+                    | Tags:
                     <span id="tag-count"></span>
-                    | <span onclick="window.open('https://busuanzi.ibruce.info/')"
+                    |
+                    <span onclick="window.open('https://busuanzi.ibruce.info/')"
                         ><i class="fa-solid fa-chart-simple fa-fade"></i>
                     </span>
                     Page Views: <span id="busuanzi_value_page_pv"></span> | Site

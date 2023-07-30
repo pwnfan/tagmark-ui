@@ -1,5 +1,9 @@
 // see https://github.com/davidchambers/string-format#method-mode
-format.extend(String.prototype, {})
+format.extend(String.prototype, {});
+
+// marked.options({mangle: false, headerIds: true});
+marked.use(markedMangle.mangle());
+marked.use(markedGfmHeadingId.gfmHeadingId());
 
 // Define date format options
 const DATA_OPTIONS = {
@@ -20,7 +24,6 @@ const customizedHeaderFilterPlaceholder =
 
 var tabulatorData = Array();
 var tagsInfo;
-var tagsCounts;
 var maxTagCount;
 var minTagCount;
 var githubItemCount = 0;
@@ -65,7 +68,8 @@ function initData() {
                         if (!obj.github_repo_info.is_archived) {
                             obj.github_repo_info.is_archived = false;
                         }
-                        obj.github_repo_info.is_archived = obj.github_repo_info.is_archived.toString();
+                        obj.github_repo_info.is_archived =
+                            obj.github_repo_info.is_archived.toString();
                     }
 
                     if (obj.is_github_url && obj.github_repo_info) {
@@ -92,27 +96,39 @@ function initData() {
     return Promise.all([fetchTabulatorDataPromise, fetchTagDefinitionsPromise])
         .then((data) => {
             [tabulatorData, tagsInfo] = data;
-            tagsInfo = formatTags(tagsInfo);
-            tagsCounts = tabulatorData.reduce((counts, item) => {
+            tabulatorData.reduce((tagsInfo, item) => {
                 item.tags.forEach((tag) => {
-                    counts[tag] = (counts[tag] || 0) + 1;
+                    tagsInfo[tag]["count"] = (tagsInfo[tag]["count"] || 0) + 1;
                 });
-                return counts;
-            }, {});
-            maxTagCount = Math.max(...Object.values(tagsCounts));
-            minTagCount = Math.min(...Object.values(tagsCounts));
+                return tagsInfo;
+            }, tagsInfo);
+            tagsInfo = formatTags(tagsInfo);
+            maxTagCount = Math.max(
+                ...Object.values(tagsInfo)
+                    .filter((tagInfo) => tagInfo.hasOwnProperty("count"))
+                    .map((tagInfo) => tagInfo.count)
+            );
+            minTagCount = Math.min(
+                ...Object.values(tagsInfo)
+                    .filter((tagInfo) => tagInfo.hasOwnProperty("count"))
+                    .map((tagInfo) => tagInfo.count)
+            );
             rainbow.setNumberRange(minTagCount, maxTagCount);
             rainbow.setSpectrum("white", "Red");
 
             return;
         })
-        .catch((error) => console.error(error.message));
+        .catch((error) => {
+            console.error(error.message);
+        });
 }
 
 function formatTags(tagsInfo) {
     for (const key in tagsInfo) {
-        tagsInfo[key]["tag"] = key
-        tagsInfo[key]["formatted_tag"] = tagsInfo[key]["prefer_format"].format(tagsInfo[key])
+        tagsInfo[key]["tag"] = key;
+        tagsInfo[key]["formatted_name"] = tagsInfo[key]["prefer_format"].format(
+            tagsInfo[key]
+        );
     }
     return tagsInfo;
 }
@@ -139,8 +155,7 @@ function customHeaderFilter(headerValue, rowValue, rowData, filterParams) {
                 checkHeaderValueParts.push("!");
             } else if (isOnlyOpenParentheses(headerValuePart)) {
                 checkHeaderValueParts.push(headerValuePart);
-            }
-            else {
+            } else {
                 let keyword = extractKeyword(headerValuePart);
                 if (!keyword.trim()) return;
                 if (Array.isArray(cellValue)) {
@@ -389,7 +404,7 @@ function createTable() {
             headerMenu: headerMenu,
             formatter: function (cell, formatterParams) {
                 let tags = cell.getValue() || [];
-                return addTags(tags);
+                return addTags(tags, false, "tag", "original");
             },
         },
         {
@@ -553,14 +568,28 @@ function showTagDefinition(event) {
         return;
     }
 
-    let tag = this.innerText;
-    let tagCountSub = this.querySelector("sub");
-    if (tagCountSub) {
-        let regex = new RegExp(`${tagCountSub.innerText}+$`);
-        tag = tag.replace(regex, "");
+    const showFieldset = document.getElementById("all-tags-show-fieldset");
+    const showInputs = showFieldset.querySelectorAll(
+        'input[name="tags-show-name"]'
+    );
+    showInputs.forEach((input) => {
+        if (input.checked) {
+            show = input.value;
+        }
+    });
+
+    let tagShowName = this.getElementsByTagName("span")[0].innerText;
+    let tag;
+    let tagCountSub = this.getElementsByTagName("sub")[0];
+    if (tagCountSub && show === "formatted_name") {
+        tag = Object.keys(tagsInfo).filter(
+            (tag) => tagsInfo[tag]["formatted_name"] === tagShowName
+        )[0];
+    } else {
+        tag = tagShowName;
     }
 
-    let tagDefinitionText = tagsInfo[tag]['definition'];
+    let tagDefinitionText = tagsInfo[tag]["definition"];
     if (!tagDefinitionText) {
         console.warn(
             `definition of tag "${tag}" is missing, please define it.`
@@ -577,26 +606,30 @@ function showTagDefinition(event) {
 
     // set Y postion of tagDefinitionDiv
     if (boundingRect.top + boundingRect.height / 2 < windowHeight / 2) {
-        tagDefinitionDiv.style.top = `${boundingRect.bottom + window.pageYOffset
-            }px`;
+        tagDefinitionDiv.style.top = `${
+            boundingRect.bottom + window.scrollY
+        }px`;
         tagDefinitionDiv.style.bottom = "auto";
     } else {
         tagDefinitionDiv.style.top = "auto";
-        tagDefinitionDiv.style.bottom = `${windowHeight - boundingRect.top + window.pageYOffset
-            }px`;
+        tagDefinitionDiv.style.bottom = `${
+            windowHeight - boundingRect.top + window.scrollY
+        }px`;
     }
 
     // set X position of tagDefinitionDiv
     if (boundingRect.left + boundingRect.width / 2 < windowWidth / 2) {
-        tagDefinitionDiv.style.left = `${(boundingRect.left + boundingRect.right) / 2 + window.pageXOffset
-            }px`;
+        tagDefinitionDiv.style.left = `${
+            (boundingRect.left + boundingRect.right) / 2 + window.pageXOffset
+        }px`;
         tagDefinitionDiv.style.right = "auto";
     } else {
         tagDefinitionDiv.style.left = "auto";
-        tagDefinitionDiv.style.right = `${windowWidth -
+        tagDefinitionDiv.style.right = `${
+            windowWidth -
             (boundingRect.left + boundingRect.right) / 2 +
             window.pageXOffset
-            }px`;
+        }px`;
     }
     tagDefinitionDiv.style.display = "block";
 
@@ -669,54 +702,82 @@ function handleAllTagsShowSwitchContainerMouseout(event) {
     allTagsShowSwitchTitle.style.display = "none";
 }
 
-function addTags(tags, withCount = false, sort = "original") {
-    let tagDiv = document.createElement("div");
-    tagDiv.classList.add("tags-container");
+function addTags(
+    tags,
+    withCount = false,
+    show = "formatted_name",
+    sort = "original"
+) {
+    let tagsDiv = document.createElement("div");
+    tagsDiv.classList.add("tags-container");
 
     // Sort tags based on the sort parameter
     if (sort === "original") {
         // Do not modify the order, iterate in the original order
     } else if (sort === "name") {
-        tags = tags.sort();
+        tags.sort((a, b) =>
+            tagsInfo[a][show].localeCompare(tagsInfo[b][show], undefined, {
+                sensitivity: "base",
+            })
+        );
     } else if (sort === "count") {
         tags = tags.sort((a, b) => {
-            if (tagsCounts[b] !== tagsCounts[a]) {
+            if (tagsInfo[b]["count"] !== tagsInfo[a]["count"]) {
                 // If count is not equal, sort by count value in descending order
-                return tagsCounts[b] - tagsCounts[a];
+                return tagsInfo[b]["count"] - tagsInfo[a]["count"];
             } else {
-                // If count is equal, sort by element name in ascending order
-                return a.localeCompare(b);
+                try {
+                    // If count is equal, sort by element name in ascending order
+                    return tagsInfo[a][show].localeCompare(
+                        tagsInfo[b][show],
+                        undefined,
+                        { sensitivity: "base" }
+                    );
+                } catch (error) {
+                    console.error("An error occurred:", error.message);
+                }
             }
         });
     }
 
     tags.forEach((tag) => {
-        let count = tagsCounts[tag];
-        let tagSpan = document.createElement("span");
+        let count = tagsInfo[tag]["count"];
 
-        tagSpan.classList.add("tag-span");
-        tagSpan.style.backgroundColor = `#${rainbow.colorAt(count)}`;
-        tagSpan.innerText = `${tag}`;
-        tagSpan.title =
-            "Left Click to show definition of this tag.\nRight Click to add this tag into the header filter input box.";
+        let tagDiv = document.createElement("div");
+        tagDiv.classList.add("tag-container");
+        tagDiv.style.backgroundColor = `#${rainbow.colorAt(count)}`;
+        tagsDiv.appendChild(tagDiv);
+
+        let tagSpan = document.createElement("span");
+        // tagSpan.classList.add("tag-span");
+        tagSpan.innerText = tagsInfo[tag][show];
+        tagDiv.appendChild(tagSpan);
+
+        let tagsInfoInTitle = { ...tagsInfo[tag] };
+        delete tagsInfoInTitle["definition"];
+        tagDiv.title = `${JSON.stringify(
+            tagsInfoInTitle,
+            null,
+            4
+        )}\n\nTag Mouse Operation Guide:\n* [Left Click] to show/hide the definition of this tag.\n* [Right Click] to add this tag into the header filter input box.\n* [Hover] to show tag information.`;
+
         if (withCount) {
             let tagCountSub = document.createElement("sub");
-            tagSpan.appendChild(tagCountSub);
+            tagDiv.appendChild(tagCountSub);
             tagCountSub.innerText = `${count}`;
         }
 
         // Change the font color to ensure it looks clear when the background color is deep
         if (count / maxTagCount >= 0.6) {
-            tagSpan.style.color = "white";
+            tagsDiv.style.color = "white";
         }
-        tagDiv.appendChild(tagSpan);
 
-        tagSpan.addEventListener("click", showTagDefinition);
-        tagSpan.addEventListener("mouseover", startFadeTag);
-        tagSpan.addEventListener("mouseout", stopFadeTag);
-        tagSpan.addEventListener("contextmenu", addTagIntoHeaderFilter); // right click
+        tagDiv.addEventListener("click", showTagDefinition);
+        tagDiv.addEventListener("mouseover", startFadeTag);
+        tagDiv.addEventListener("mouseout", stopFadeTag);
+        tagDiv.addEventListener("contextmenu", addTagIntoHeaderFilter); // right click
     });
-    return tagDiv;
+    return tagsDiv;
 }
 
 function displayFilterDoc() {
@@ -752,10 +813,10 @@ function displayFilterDoc() {
 }
 
 // Dynamically load the script regardless of the user's choice
-function loadStatisticsScript(
-) {
+function loadStatisticsScript() {
     const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js";
+    script.src =
+        "https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js";
     script.crossOrigin = "anonymous";
     script.referrerPolicy = "no-referrer";
     document.head.appendChild(script);
@@ -771,22 +832,20 @@ window.addEventListener("load", function () {
             icon: "warning",
             showCancelButton: true,
             color: "white",
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
             confirmButtonText: "Yes",
-            cancelButtonText: "No"
+            cancelButtonText: "No",
         }).then((result) => {
-            ifLoadStatisticsScript = result.isConfirmed
+            ifLoadStatisticsScript = result.isConfirmed;
             Cookies.set("ifLoadStatisticsScript", ifLoadStatisticsScript);
             if (ifLoadStatisticsScript) {
                 loadStatisticsScript();
             }
         });
-
-    }
-    else {
+    } else {
         // convert into Boolean
-        ifLoadStatisticsScript = JSON.parse(ifLoadStatisticsScript)
+        ifLoadStatisticsScript = JSON.parse(ifLoadStatisticsScript);
     }
 
     if (ifLoadStatisticsScript) {
@@ -810,21 +869,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 // set statistics
-                let bookmarkCountSpan = document.getElementById(
-                    "bookmark-count"
-                );
+                let bookmarkCountSpan =
+                    document.getElementById("bookmark-count");
                 bookmarkCountSpan.innerText = tabulatorData.length;
                 let githubBookmarkCountSpan = document.getElementById(
                     "github-bookmark-count"
                 );
                 githubBookmarkCountSpan.innerText = githubItemCount;
                 let tagCountSpan = document.getElementById("tag-count");
-                tagCountSpan.innerText = Object.keys(tagsCounts).length;
+                tagCountSpan.innerText = Object.keys(tagsInfo).length;
 
                 // add events
-                let allTagsOverlay = document.getElementById(
-                    "all-tags-overlay"
-                );
+                let allTagsOverlay =
+                    document.getElementById("all-tags-overlay");
                 let allTagsShowSwitchContainer = document.getElementById(
                     "all-tags-show-switch-container"
                 );
@@ -832,13 +889,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 let allTagsOverlayCloseBtn = document.querySelector(
                     "#all-tags-overlay .close-btn"
                 );
-                let allTagsSortFiledset = document.getElementById(
-                    "all-tags-sort-fieldset"
-                );
+                let allTagsFiledsets = document
+                    .getElementById("all-tags-menu")
+                    .getElementsByTagName("fieldset");
 
-                let filterDocOverlay = document.getElementById(
-                    "filter-doc-overlay"
-                );
+                let filterDocOverlay =
+                    document.getElementById("filter-doc-overlay");
                 let filterDocOverlayCloseBtn = document.querySelector(
                     "#filter-doc-overlay .close-btn"
                 );
@@ -864,18 +920,66 @@ document.addEventListener("DOMContentLoaded", () => {
                     handleAllTagsShowSwitchContainerMouseout
                 );
                 allTagsDiv.appendChild(
-                    addTags(Object.keys(tagsCounts), true, "count")
+                    addTags(
+                        Object.keys(tagsInfo).filter(
+                            (tag) =>
+                                tagsInfo[tag].hasOwnProperty("count") &&
+                                tagsInfo[tag].count > 0
+                        ),
+                        true,
+                        "formatted_name",
+                        "count"
+                    )
                 );
                 allTagsOverlayCloseBtn.addEventListener("click", () => {
                     allTagsOverlay.classList.remove("active");
                 });
-                allTagsSortFiledset.addEventListener("change", (event) => {
-                    let sort = event.target.value;
-                    allTagsDiv.innerHTML = "";
-                    allTagsDiv.appendChild(
-                        addTags(Object.keys(tagsCounts), true, sort)
-                    );
-                });
+                for (const fieldset of allTagsFiledsets) {
+                    fieldset.addEventListener("change", (event) => {
+                        const sortFieldset = document.getElementById(
+                            "all-tags-sort-fieldset"
+                        );
+                        const showFieldset = document.getElementById(
+                            "all-tags-show-fieldset"
+                        );
+
+                        const sortInputs = sortFieldset.querySelectorAll(
+                            'input[name="tags-sort"]'
+                        );
+                        const showInputs = showFieldset.querySelectorAll(
+                            'input[name="tags-show-name"]'
+                        );
+
+                        let sort;
+                        let show;
+
+                        sortInputs.forEach((input) => {
+                            if (input.checked) {
+                                sort = input.value;
+                            }
+                        });
+
+                        showInputs.forEach((input) => {
+                            if (input.checked) {
+                                show = input.value;
+                            }
+                        });
+
+                        allTagsDiv.innerHTML = "";
+                        allTagsDiv.appendChild(
+                            addTags(
+                                Object.keys(tagsInfo).filter(
+                                    (tag) =>
+                                        tagsInfo[tag].hasOwnProperty("count") &&
+                                        tagsInfo[tag].count > 0
+                                ),
+                                true,
+                                show,
+                                sort
+                            )
+                        );
+                    });
+                }
 
                 filterDocOverlayCloseBtn.addEventListener("click", () => {
                     filterDocOverlay.classList.remove("active");
@@ -904,7 +1008,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 toBottom.addEventListener("click", () => {
                     table.scrollToRow(
                         table.getRowFromPosition(
-                            Math.min(table.getDataCount("active"), table.getPageSize())
+                            Math.min(
+                                table.getDataCount("active"),
+                                table.getPageSize()
+                            )
                         ),
                         "top",
                         true
