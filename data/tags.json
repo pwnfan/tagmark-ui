@@ -5005,7 +5005,7 @@
         "definition": "https://www.seeyon.com/\n\nAn Office Automation(OA) Suite widely used in China",
         "full_name": "Seeyon OA",
         "gpt_prompt_context": null,
-        "prefer_format": "{alias} ({full_name})"
+        "prefer_format": "{full_name} ({alias})"
     },
     "oa-tongda": {
         "abbr": null,
@@ -5013,7 +5013,7 @@
         "definition": "https://www.tongda2000.com/\n\nAn Office Automation(OA) Suite widely used in China",
         "full_name": "Tongda OA",
         "gpt_prompt_context": null,
-        "prefer_format": "{alias} ({full_name})"
+        "prefer_format": "{full_name} ({alias})"
     },
     "oa-weaver": {
         "abbr": null,
@@ -5021,7 +5021,7 @@
         "definition": "https://www.weaver.com.cn/\n\nAn Office Automation(OA) Suite widely used in China",
         "full_name": "Weaver OA",
         "gpt_prompt_context": null,
-        "prefer_format": "{alias} ({full_name})"
+        "prefer_format": "{full_name} ({alias})"
     },
     "oa-yonyou": {
         "abbr": null,
@@ -5029,7 +5029,7 @@
         "definition": "https://www.yonyou.com/\n\nAn Office Automation(OA) Suite widely used in China",
         "full_name": "Yonyou OA",
         "gpt_prompt_context": null,
-        "prefer_format": "{alias} ({full_name})"
+        "prefer_format": "{full_name} ({alias})"
     },
     "oa-泛微": {
         "abbr": null,
@@ -6805,7 +6805,7 @@
         "definition": "In cybersecurity, a crawler or spider, also known as a web crawler or web spider, refers to an automated program or bot that systematically browses the internet, following hyperlinks from one webpage to another, and collecting information from websites.\n\nCrawlers are commonly used by search engines, such as Google, Bing, or Yahoo, to index web pages and build their search engine databases. They visit web pages, extract content, and store information about the page's content, structure, and metadata. This enables search engines to provide relevant search results when users search for specific keywords or phrases.\n\nHowever, not all web crawlers are benign. In the context of cybersecurity, malicious actors may use crawlers for malicious purposes, such as:\n\n1. Scraping Sensitive Information: Malicious crawlers can be programmed to scrape sensitive information, such as personal data, financial information, or intellectual property, from websites. This data can be used for identity theft, fraud, or other malicious activities.\n\n2. Mapping Website Vulnerabilities: Crawlers can be used to scan websites for vulnerabilities, misconfigurations, or security weaknesses. Malicious actors can exploit these vulnerabilities to gain unauthorized access, inject malicious code, or launch other attacks.\n\n3. Distributed Denial of Service (DDoS) Attacks: Malicious crawlers can be part of a larger botnet used to launch DDoS attacks against websites. By sending a high volume of requests, the crawler can overload the target website's resources and disrupt its availability.\n\nTo protect against malicious crawlers, website owners and administrators often employ various security measures, including:\n\n1. Robots.txt: Websites can use the robots.txt file to control the behavior of web crawlers and specify which pages or directories should be excluded from indexing.\n\n2. CAPTCHA: CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) challenges can be implemented to distinguish between human users and automated crawlers.\n\n3. Rate Limiting: Websites can implement rate limiting mechanisms to restrict the number of requests from a single IP address or user agent within a specific time period.\n\n4. Web Application Firewalls (WAF): WAFs can help detect and block suspicious or malicious bot traffic, including malicious crawlers.\n\nOverall, while legitimate web crawlers play an important role in indexing and providing access to information, it's essential for website owners to implement security measures to protect against potential malicious crawlers and their associated risks.",
         "full_name": null,
         "gpt_prompt_context": "cybersecurity",
-        "prefer_format": "{alias} ({tag})"
+        "prefer_format": "{tag} ({alias})"
     },
     "spinner": {
         "abbr": null,
