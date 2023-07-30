@@ -519,6 +519,14 @@
         "gpt_prompt_context": "cybersecurity",
         "prefer_format": "{tag}"
     },
+    "backdoor-sticky-keys": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "sticky keys backdoor",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "bas": {
         "abbr": "BAS",
         "alias": null,
@@ -599,11 +607,27 @@
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
+    "binary-ninjia": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Binary Ninja",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "bitcoin": {
         "abbr": null,
         "alias": null,
         "definition": "Bitcoin is a decentralized digital currency that was created in 2009 by an anonymous person or group of people using the pseudonym Satoshi Nakamoto. It is the first and most well-known cryptocurrency, operating on a peer-to-peer network without the need for a central authority or intermediary.\n\nHere are key points about Bitcoin:\n\n1. Decentralized and Peer-to-Peer: Bitcoin operates on a decentralized network, meaning it is not controlled by any central bank or government. Transactions are conducted directly between users without the need for intermediaries like banks.\n\n2. Cryptocurrency: Bitcoin is a digital currency that uses cryptographic techniques to secure transactions and control the creation of new units. It relies on a technology called blockchain, which is a distributed ledger that records all transactions in a transparent and immutable manner.\n\n3. Limited Supply: Bitcoin has a finite supply, with a maximum limit set at 21 million bitcoins. This scarcity is built into the system to prevent inflation and maintain the value of the currency over time. New bitcoins are created through a process called mining, where powerful computers solve complex mathematical problems.\n\n4. Blockchain Technology: The underlying technology behind Bitcoin is blockchain. It is a decentralized and transparent ledger that records all Bitcoin transactions. Each block in the chain contains a list of transactions, and once added, it cannot be altered, providing security and immutability.\n\n5. Wallets and Addresses: Bitcoin is stored in digital wallets, which are software applications or hardware devices that enable users to securely store and manage their bitcoins. Each wallet is associated with a unique address, a long string of characters, which is used to send and receive bitcoins.\n\n6. Anonymity and Pseudonymity: Bitcoin transactions are pseudonymous, as they are linked to Bitcoin addresses rather than real-world identities. However, the public nature of the blockchain means that transactions can be traced, and additional measures must be taken to ensure privacy and anonymity.\n\n7. Volatility and Speculation: Bitcoin's price is known for its volatility, often experiencing significant fluctuations over short periods. This volatility has made Bitcoin an attractive asset for traders and investors but also poses risks for those looking for stability in a currency.\n\n8. Use Cases: Bitcoin can be used for various purposes, including online purchases, money transfers, investment, and as a store of value. It has gained acceptance by merchants and organizations worldwide as a form of payment, and its popularity has led to the emergence of other cryptocurrencies and blockchain-based applications.\n\nIt's important to note that the concepts and technology behind Bitcoin can be complex, and it's recommended to further research and understand the risks and considerations associated with its use before engaging with it.",
         "full_name": "Bitcoin",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
+    "black-box": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "black box",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
@@ -830,6 +854,14 @@
         "full_name": "Anti-Scraper and Malicious Infrastructure bypass",
         "gpt_prompt_context": "cybersecurity",
         "prefer_format": "{abbr} ({full_name})"
+    },
+    "bypass-auth": {
+        "abbr": null,
+        "alias": "authentication bypass",
+        "definition": null,
+        "full_name": "authentication bypass",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name} ({alias})"
     },
     "bypass-cdn": {
         "abbr": null,
@@ -1775,6 +1807,14 @@
         "gpt_prompt_context": "computer science",
         "prefer_format": "{full_name}"
     },
+    "data-warehouse": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "data warehouse",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "database": {
         "abbr": null,
         "alias": null,
@@ -2076,6 +2116,14 @@
         "alias": null,
         "definition": "Digital media refers to content that is created, stored, and transmitted electronically in digital formats. It encompasses various forms of media, including text, images, audio, video, and interactive elements, that can be accessed and consumed using electronic devices such as computers, smartphones, tablets, and digital media players.\n\nExamples of digital media include:\n\n1. Text: Digital documents, e-books, web articles, blogs, and social media posts.\n\n2. Images: Digital photographs, graphic designs, illustrations, and visual content shared on websites, social media platforms, or multimedia presentations.\n\n3. Audio: Digital music files, podcasts, streaming music services, and audio recordings.\n\n4. Video: Digital videos, movies, TV shows, video clips, online streaming platforms, and video-sharing websites.\n\n5. Interactive Media: Digital games, multimedia presentations, virtual reality (VR) experiences, augmented reality (AR) applications, and interactive websites.\n\nDigital media has become increasingly prevalent in our daily lives due to advancements in technology and the widespread use of the internet. It has transformed the way we create, consume, and share information and entertainment. Some of the key characteristics of digital media include:\n\n1. Reproducibility: Digital media can be easily copied, reproduced, and distributed without degradation in quality. This allows for easy sharing and dissemination of content.\n\n2. Interactivity: Digital media often provides opportunities for user interaction, such as commenting on articles, playing games, or participating in online discussions.\n\n3. Multimodality: Digital media can combine multiple forms of media, such as text, images, audio, and video, to create rich and engaging experiences.\n\n4. Accessibility: Digital media can be accessed and consumed anytime and anywhere using various devices connected to the internet. It has enabled greater accessibility to information and entertainment globally.\n\n5. Customization: Digital media allows users to personalize their experiences by selecting and customizing content according to their preferences.\n\nDigital media has revolutionized industries such as publishing, journalism, entertainment, advertising, education, and communication. It has opened up new avenues for creativity, collaboration, and expression, while also posing challenges related to copyright, privacy, and information overload.",
         "full_name": "digital media",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
+    "digitalocean": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "DigitalOcean",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
@@ -2471,6 +2519,14 @@
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
+    "emoji": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Emoji",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "empire": {
         "abbr": null,
         "alias": null,
@@ -2758,6 +2814,14 @@
         "full_name": "file signature",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name} (aka {alias})"
+    },
+    "file-sys": {
+        "abbr": ".sys",
+        "alias": null,
+        "definition": null,
+        "full_name": "system file",
+        "gpt_prompt_context": null,
+        "prefer_format": "{abbr} ({full_name})"
     },
     "file-system": {
         "abbr": null,
@@ -3679,6 +3743,14 @@
         "gpt_prompt_context": null,
         "prefer_format": "{abbr}"
     },
+    "iis-short-filename": {
+        "abbr": null,
+        "alias": null,
+        "definition": "The IIS (Internet Information Services) short filename vulnerability, also known as the \"8.3 filename disclosure vulnerability,\" is a security issue that affects certain versions of Microsoft's IIS web server. It allows an attacker to gain access to short (8.3) filenames of files and directories hosted on the server, which could potentially expose sensitive information and aid in further attacks.\n\nThe vulnerability is based on the legacy 8.3 filename convention used in older versions of Windows. In this convention, filenames were limited to eight characters, followed by a three-character file extension (e.g., \"example.txt\" would be \"exampl~1.txt\" in short format).\n\nThe IIS short filename vulnerability is typically exploited through crafted HTTP requests that contain specially crafted URLs or query strings. By manipulating these requests, an attacker can trick the IIS web server into revealing the short filenames of files and directories.\n\nThe risks associated with this vulnerability include:\n\n1. Information Disclosure: Short filenames may contain sensitive information, such as usernames, directories, or filenames that were intended to remain hidden.\n\n2. Directory Enumeration: An attacker can potentially enumerate directory structures by obtaining short filenames, allowing them to gather intelligence for further attacks.\n\n3. Path Traversal: If the web application is vulnerable to path traversal attacks, knowing short filenames could assist attackers in constructing attack payloads.\n\nMicrosoft has addressed this vulnerability in various IIS versions by introducing security updates and patches. To mitigate the risk of this vulnerability, it is essential to keep the IIS server and operating system up-to-date with the latest security updates.\n\nAdditionally, web administrators can take additional measures to prevent information leakage through short filenames:\n\n1. Disable 8.3 Filename Generation: The web server's configuration should be adjusted to prevent the creation of 8.3 short filenames for new files and directories.\n\n2. Regular Security Audits: Conduct security audits to identify any exposed short filenames on the server.\n\n3. Filter and Sanitize User Input: Ensure that user-supplied input is properly filtered and sanitized to prevent path traversal attacks.\n\nBy following best practices for web server configuration and maintaining up-to-date software, web administrators can reduce the risk of IIS short filename vulnerability and other potential security threats.",
+        "full_name": "IIS short filename vulnerability",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "image-classification": {
         "abbr": null,
         "alias": null,
@@ -3757,6 +3829,14 @@
         "definition": "In the context of cybersecurity, \"indicator removal\" typically refers to the process of removing or mitigating indicators of compromise (IOCs) from a compromised system or network. IOCs are artifacts or evidence left behind by an attacker or malicious activity that can indicate a security breach or compromise. These indicators can include IP addresses, domain names, file hashes, registry keys, suspicious processes, or any other artifacts associated with the attack.\n\nWhen an organization detects or responds to a security incident, one of the key objectives is to identify and remove all IOCs to eliminate the presence of the attacker and prevent further damage. Indicator removal involves identifying and remediating the vulnerabilities or compromised assets that allowed the attack to occur, as well as removing any malicious files, code, or configurations left by the attacker.\n\nThe process of indicator removal typically involves the following steps:\n\n1. Investigation: Conduct a thorough investigation to identify and document all IOCs associated with the incident. This may include analyzing logs, examining network traffic, reviewing system configurations, or using specialized tools and techniques for forensic analysis.\n\n2. Remediation: Once the IOCs are identified, take immediate actions to remediate the vulnerabilities or compromised assets that allowed the attack to occur. This may involve patching software, updating configurations, removing malicious files, or isolating and rebuilding affected systems.\n\n3. Verification: After remediation, verify that the identified IOCs have been successfully removed. This can be done through re-scanning systems, monitoring network traffic, or conducting follow-up security assessments to ensure that the indicators no longer exist.\n\n4. Post-Incident Review: Conduct a post-incident review to analyze the root causes of the incident, identify lessons learned, and implement improvements to prevent similar incidents in the future. This may involve updating security policies, enhancing security controls, or providing additional training and awareness to staff.\n\nIndicator removal is an essential part of the incident response process as it helps organizations regain control over their systems, restore trust, and prevent further damage or unauthorized access. It is important to perform indicator removal thoroughly and promptly to minimize the risk of persistent threats or reinfection.",
         "full_name": "indicator removal",
         "gpt_prompt_context": "cybersecurity",
+        "prefer_format": "{full_name}"
+    },
+    "industry-standard": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "industry standard",
+        "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
     "infra": {
@@ -3870,14 +3950,6 @@
         "full_name": "Internet Relay Chat",
         "gpt_prompt_context": null,
         "prefer_format": "{abbr}"
-    },
-    "iis-short-filename": {
-        "abbr": null,
-        "alias": null,
-        "definition": "The IIS (Internet Information Services) short filename vulnerability, also known as the \"8.3 filename disclosure vulnerability,\" is a security issue that affects certain versions of Microsoft's IIS web server. It allows an attacker to gain access to short (8.3) filenames of files and directories hosted on the server, which could potentially expose sensitive information and aid in further attacks.\n\nThe vulnerability is based on the legacy 8.3 filename convention used in older versions of Windows. In this convention, filenames were limited to eight characters, followed by a three-character file extension (e.g., \"example.txt\" would be \"exampl~1.txt\" in short format).\n\nThe IIS short filename vulnerability is typically exploited through crafted HTTP requests that contain specially crafted URLs or query strings. By manipulating these requests, an attacker can trick the IIS web server into revealing the short filenames of files and directories.\n\nThe risks associated with this vulnerability include:\n\n1. Information Disclosure: Short filenames may contain sensitive information, such as usernames, directories, or filenames that were intended to remain hidden.\n\n2. Directory Enumeration: An attacker can potentially enumerate directory structures by obtaining short filenames, allowing them to gather intelligence for further attacks.\n\n3. Path Traversal: If the web application is vulnerable to path traversal attacks, knowing short filenames could assist attackers in constructing attack payloads.\n\nMicrosoft has addressed this vulnerability in various IIS versions by introducing security updates and patches. To mitigate the risk of this vulnerability, it is essential to keep the IIS server and operating system up-to-date with the latest security updates.\n\nAdditionally, web administrators can take additional measures to prevent information leakage through short filenames:\n\n1. Disable 8.3 Filename Generation: The web server's configuration should be adjusted to prevent the creation of 8.3 short filenames for new files and directories.\n\n2. Regular Security Audits: Conduct security audits to identify any exposed short filenames on the server.\n\n3. Filter and Sanitize User Input: Ensure that user-supplied input is properly filtered and sanitized to prevent path traversal attacks.\n\nBy following best practices for web server configuration and maintaining up-to-date software, web administrators can reduce the risk of IIS short filename vulnerability and other potential security threats.",
-        "full_name": "IIS short filename vulnerability",
-        "gpt_prompt_context": null,
-        "prefer_format": "{full_name}"
     },
     "issue": {
         "abbr": null,
@@ -4343,6 +4415,14 @@
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
+    "linode": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Linode",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
     "linter": {
         "abbr": null,
         "alias": null,
@@ -4366,6 +4446,14 @@
         "full_name": null,
         "gpt_prompt_context": null,
         "prefer_format": "{tag}"
+    },
+    "living-off-the-land": {
+        "abbr": "LOL",
+        "alias": null,
+        "definition": null,
+        "full_name": "living off the land",
+        "gpt_prompt_context": "cybersecurity",
+        "prefer_format": "{full_name} ({abbr}, in {gpt_prompt_context})"
     },
     "location": {
         "abbr": null,
@@ -4436,6 +4524,14 @@
         "alias": null,
         "definition": "macOS is an operating system developed and distributed by Apple Inc. It is designed specifically for Apple's Macintosh computers, including desktops and laptops. macOS is known for its sleek and user-friendly interface, integration with other Apple devices and services, and focus on security and privacy.\n\nHere are some key features and characteristics of macOS:\n\n1. User Interface: macOS features a graphical user interface (GUI) that is intuitive and visually appealing. It incorporates a dock for easy access to applications, a menu bar at the top of the screen, and a desktop where users can organize their files and folders.\n\n2. Integration with Apple Ecosystem: macOS seamlessly integrates with other Apple devices and services, such as iPhones, iPads, Apple Watch, and iCloud. This allows for features like Handoff, which enables users to start a task on one device and continue it on another.\n\n3. App Store: macOS includes the Mac App Store, where users can download and install a wide range of applications, including productivity tools, creative software, games, and more.\n\n4. Siri: Siri, Apple's virtual assistant, is built into macOS and allows users to perform tasks, get information, and control their Mac using voice commands.\n\n5. Security and Privacy: macOS puts a strong emphasis on security and privacy. It includes features such as Gatekeeper, which helps protect against malicious software, and FileVault, which enables disk encryption. Privacy controls are also available to give users control over their data and permissions.\n\n6. Continuity: macOS offers Continuity features that allow users to seamlessly switch between their Mac and other Apple devices. This includes features like Handoff, Universal Clipboard, and Instant Hotspot.\n\n7. Unix-Based Foundation: macOS is built on a Unix-based foundation, which provides a stable and secure operating system core. It offers powerful terminal access and supports a wide range of developer tools and frameworks.\n\nmacOS has gone through several major versions, each introducing new features and enhancements. Some notable versions of macOS include macOS Mojave, macOS Catalina, and macOS Big Sur.\n\nOverall, macOS provides a user-friendly and feature-rich operating system experience for Mac users, with a focus on seamless integration, security, and privacy.",
         "full_name": "MacOS",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
+    "machine-learning": {
+        "abbr": "ML",
+        "alias": null,
+        "definition": "Machine learning is a subfield of artificial intelligence (AI) that focuses on the development of algorithms and models that allow computers to learn and make predictions or decisions without being explicitly programmed. It involves the study of computational models and statistical techniques that enable systems to automatically learn and improve from experience or data.\n\nThe goal of machine learning is to develop algorithms and models that can learn from patterns, examples, and data to perform specific tasks or make accurate predictions. Instead of explicitly programming specific instructions, machine learning algorithms are trained on data and learn patterns, relationships, and insights to make predictions or decisions.\n\nMachine learning can be categorized into three main types:\n\n1. Supervised Learning: In supervised learning, the algorithm is trained on labeled data, where the desired output or target variable is known. The algorithm learns from the input-output pairs and generalizes the patterns to make predictions on new, unseen data.\n\n2. Unsupervised Learning: In unsupervised learning, the algorithm is trained on unlabeled data, where the target variable is unknown. The algorithm discovers patterns, structures, or relationships in the data without specific guidance and can be used for tasks such as clustering, dimensionality reduction, and anomaly detection.\n\n3. Reinforcement Learning: In reinforcement learning, an agent learns to interact with an environment and make decisions based on feedback or rewards. The agent learns through trial and error, exploring different actions and receiving feedback in the form of rewards or penalties, with the objective of maximizing long-term rewards.\n\nMachine learning algorithms use various techniques and models, including decision trees, neural networks, support vector machines, clustering algorithms, and more. These algorithms can be applied to a wide range of applications, including image and speech recognition, natural language processing, recommendation systems, fraud detection, autonomous vehicles, and many other domains.\n\nTo develop machine learning models, several steps are typically involved, including data collection and preprocessing, feature selection or engineering, model training and evaluation, and deployment in real-world applications. The success of a machine learning model depends on the quality and representativeness of the data, the choice of appropriate algorithms and techniques, and careful evaluation and fine-tuning of the models.\n\nMachine learning has gained significant attention and popularity due to its ability to automate tasks, make accurate predictions, and uncover valuable insights from large and complex datasets. It has become an essential tool in various industries and domains, revolutionizing areas such as healthcare, finance, marketing, e-commerce, and more.",
+        "full_name": "machine learning",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
@@ -4654,14 +4750,6 @@
         "full_name": "MITRE Adversarial Tactics, Techniques, and Common Knowledge",
         "gpt_prompt_context": null,
         "prefer_format": "{abbr}"
-    },
-    "machine-learning": {
-        "abbr": "ML",
-        "alias": null,
-        "definition": "Machine learning is a subfield of artificial intelligence (AI) that focuses on the development of algorithms and models that allow computers to learn and make predictions or decisions without being explicitly programmed. It involves the study of computational models and statistical techniques that enable systems to automatically learn and improve from experience or data.\n\nThe goal of machine learning is to develop algorithms and models that can learn from patterns, examples, and data to perform specific tasks or make accurate predictions. Instead of explicitly programming specific instructions, machine learning algorithms are trained on data and learn patterns, relationships, and insights to make predictions or decisions.\n\nMachine learning can be categorized into three main types:\n\n1. Supervised Learning: In supervised learning, the algorithm is trained on labeled data, where the desired output or target variable is known. The algorithm learns from the input-output pairs and generalizes the patterns to make predictions on new, unseen data.\n\n2. Unsupervised Learning: In unsupervised learning, the algorithm is trained on unlabeled data, where the target variable is unknown. The algorithm discovers patterns, structures, or relationships in the data without specific guidance and can be used for tasks such as clustering, dimensionality reduction, and anomaly detection.\n\n3. Reinforcement Learning: In reinforcement learning, an agent learns to interact with an environment and make decisions based on feedback or rewards. The agent learns through trial and error, exploring different actions and receiving feedback in the form of rewards or penalties, with the objective of maximizing long-term rewards.\n\nMachine learning algorithms use various techniques and models, including decision trees, neural networks, support vector machines, clustering algorithms, and more. These algorithms can be applied to a wide range of applications, including image and speech recognition, natural language processing, recommendation systems, fraud detection, autonomous vehicles, and many other domains.\n\nTo develop machine learning models, several steps are typically involved, including data collection and preprocessing, feature selection or engineering, model training and evaluation, and deployment in real-world applications. The success of a machine learning model depends on the quality and representativeness of the data, the choice of appropriate algorithms and techniques, and careful evaluation and fine-tuning of the models.\n\nMachine learning has gained significant attention and popularity due to its ability to automate tasks, make accurate predictions, and uncover valuable insights from large and complex datasets. It has become an essential tool in various industries and domains, revolutionizing areas such as healthcare, finance, marketing, e-commerce, and more.",
-        "full_name": "machine learning",
-        "gpt_prompt_context": null,
-        "prefer_format": "{full_name}"
     },
     "mmdb": {
         "abbr": "MMDB",
@@ -5070,6 +5158,14 @@
         "full_name": "Out-of-band application security testing",
         "gpt_prompt_context": null,
         "prefer_format": "{abbr} ({full_name})"
+    },
+    "obfuscation": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": null,
+        "gpt_prompt_context": "software development and cybersecurity",
+        "prefer_format": "{tag}"
     },
     "objective-c": {
         "abbr": null,
@@ -5863,6 +5959,14 @@
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
+    "purple-team": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Purple Team",
+        "gpt_prompt_context": "cybersecurity",
+        "prefer_format": "{full_name}"
+    },
     "pwa": {
         "abbr": "PWA",
         "alias": null,
@@ -5887,6 +5991,14 @@
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
+    "pytest-fixture": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "fixture",
+        "gpt_prompt_context": "pytest",
+        "prefer_format": "{full_name} (in Python {gpt_prompt_context})"
+    },
     "python": {
         "abbr": null,
         "alias": null,
@@ -5894,6 +6006,22 @@
         "full_name": "Python",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
+    },
+    "python-black": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Black",
+        "gpt_prompt_context": "Python",
+        "prefer_format": "{full_name} (in {gpt_prompt_context})"
+    },
+    "python-poetry": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Poetry",
+        "gpt_prompt_context": "Python",
+        "prefer_format": "{full_name} (in {gpt_prompt_context})"
     },
     "python-typing": {
         "abbr": null,
@@ -5942,6 +6070,14 @@
         "full_name": "Raku",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name} (aka {alias})"
+    },
+    "ransomware": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": null,
+        "gpt_prompt_context": null,
+        "prefer_format": "{tag}"
     },
     "rasp": {
         "abbr": "RASP",
@@ -7215,6 +7351,14 @@
         "gpt_prompt_context": "software development",
         "prefer_format": "{full_name} (aka {alias})"
     },
+    "third-party": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "third party",
+        "gpt_prompt_context": "software development",
+        "prefer_format": "{full_name}"
+    },
     "threat-hunting": {
         "abbr": null,
         "alias": null,
@@ -7796,6 +7940,14 @@
         "alias": null,
         "definition": "https://vulners.com/\n\nVulnerability database enriched with millions of CVEs, exploits and security articles that provides varied tools and services for vulnerability management",
         "full_name": "Vulners",
+        "gpt_prompt_context": null,
+        "prefer_format": "{full_name}"
+    },
+    "vultr": {
+        "abbr": null,
+        "alias": null,
+        "definition": null,
+        "full_name": "Vultr",
         "gpt_prompt_context": null,
         "prefer_format": "{full_name}"
     },
