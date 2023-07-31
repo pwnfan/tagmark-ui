@@ -838,7 +838,10 @@ window.addEventListener("load", function () {
             cancelButtonText: "No",
         }).then((result) => {
             ifLoadStatisticsScript = result.isConfirmed;
-            Cookies.set("ifLoadStatisticsScript", ifLoadStatisticsScript);
+            Cookies.set("ifLoadStatisticsScript", ifLoadStatisticsScript, {
+                expires: 7,
+                path: "",
+            });
             if (ifLoadStatisticsScript) {
                 loadStatisticsScript();
             }
