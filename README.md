@@ -140,4 +140,5 @@ tagmark-ui has implemented the invocation of filters through pure frontend Javas
 
 - [x] fix overlay doc `<a>` style
 - [x] implement NOT keyword in the filter
-- [ ] rewrite UI code with Typescript or Flutter
+- [ ] rewrite UI code with a popular frontend framework
+- [ ] add right click menu into tabulator row to copy the json data of the row 
