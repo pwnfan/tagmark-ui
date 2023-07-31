@@ -759,7 +759,7 @@ function addTags(
             tagsInfoInTitle,
             null,
             4
-        )}\n\nTag Mouse Operation Guide:\n* [Left Click] to show/hide the definition of this tag.\n* [Right Click] to add this tag into the header filter input box.\n* [Hover] to show tag information.`;
+        )}\n\nTag Mouse Operation Guide:\n* [Left Click] to show/hide the definition of this tag.\n* [Right Click] to add this tag into the header filter input box.\n* [Hover] to show tag information (this popup).`;
 
         if (withCount) {
             let tagCountSub = document.createElement("sub");
@@ -828,7 +828,7 @@ window.addEventListener("load", function () {
     if (ifLoadStatisticsScript === undefined) {
         Swal.fire({
             title: "Privacy Confirm",
-            text: "Do you want to load the script (powered by busuanzi) for showing page view statistics?",
+            text: "Do you want to load the script (powered by busuanzi) for showing page view statistics in the page bottom, which will include your visit?",
             icon: "warning",
             showCancelButton: true,
             color: "white",
