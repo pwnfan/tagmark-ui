@@ -559,15 +559,7 @@ function createTable() {
     });
 }
 
-function showTagDefinition(event) {
-    let tagDefinitionDiv = document.getElementById("tag-definition");
-
-    // toggle display
-    if (!["none", ""].includes(tagDefinitionDiv.style.display)) {
-        tagDefinitionDiv.style.display = "none";
-        return;
-    }
-
+function getClickedTag(tagDiv) {
     const showFieldset = document.getElementById("all-tags-show-fieldset");
     const showInputs = showFieldset.querySelectorAll(
         'input[name="tags-show-name"]'
@@ -578,9 +570,9 @@ function showTagDefinition(event) {
         }
     });
 
-    let tagShowName = this.getElementsByTagName("span")[0].innerText;
+    let tagShowName = tagDiv.getElementsByTagName("span")[0].innerText;
     let tag;
-    let tagCountSub = this.getElementsByTagName("sub")[0];
+    let tagCountSub = tagDiv.getElementsByTagName("sub")[0];
     if (tagCountSub && show === "formatted_name") {
         tag = Object.keys(tagsInfo).filter(
             (tag) => tagsInfo[tag]["formatted_name"] === tagShowName
@@ -588,6 +580,20 @@ function showTagDefinition(event) {
     } else {
         tag = tagShowName;
     }
+
+    return tag;
+}
+
+function showTagDefinition(event) {
+    let tagDefinitionDiv = document.getElementById("tag-definition");
+
+    // toggle display
+    if (!["none", ""].includes(tagDefinitionDiv.style.display)) {
+        tagDefinitionDiv.style.display = "none";
+        return;
+    }
+
+    let tag = getClickedTag(this);
 
     let tagDefinitionText = tagsInfo[tag]["definition"];
     if (!tagDefinitionText) {
@@ -654,12 +660,7 @@ function stopFadeTag(event) {
 
 function addTagIntoHeaderFilter(event) {
     event.preventDefault();
-    let tag = this.innerText;
-    let tagCountSub = this.querySelector("sub");
-    if (tagCountSub) {
-        let regex = new RegExp(`${tagCountSub.innerText}+$`);
-        tag = tag.replace(regex, "");
-    }
+    let tag = getClickedTag(this);
 
     // here we can not use table.setHeaderFilterValue because it refresh the table automately, which is not we want
     //table.setHeaderFilterValue("tags", newTagsHeaderFilterValue);
@@ -771,7 +772,7 @@ function addTags(
         // Change the font color to ensure it looks clear when the background color is deep
         if (count / maxTagCount >= 0.6) {
             tagSpan.style.color = "white";
-            if (tagCountSub){
+            if (tagCountSub) {
                 tagCountSub.style.color = "white";
             }
         }
