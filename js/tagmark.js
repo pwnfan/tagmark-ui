@@ -761,15 +761,19 @@ function addTags(
             4
         )}\n\nTag Mouse Operation Guide:\n* [Left Click] to show/hide the definition of this tag.\n* [Right Click] to add this tag into the header filter input box.\n* [Hover] to show tag information (this popup).`;
 
+        let tagCountSub;
         if (withCount) {
-            let tagCountSub = document.createElement("sub");
+            tagCountSub = document.createElement("sub");
             tagDiv.appendChild(tagCountSub);
             tagCountSub.innerText = `${count}`;
         }
 
         // Change the font color to ensure it looks clear when the background color is deep
         if (count / maxTagCount >= 0.6) {
-            tagsDiv.style.color = "white";
+            tagSpan.style.color = "white";
+            if (tagCountSub){
+                tagCountSub.style.color = "white";
+            }
         }
 
         tagDiv.addEventListener("click", showTagDefinition);
