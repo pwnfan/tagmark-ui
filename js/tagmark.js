@@ -15,7 +15,7 @@ const DATA_OPTIONS = {
     second: "2-digit",
 };
 
-const uiDataUrl = "data/tagmark_ui_data.jsonl";
+const uiDataUrl = "data/tagmarks.jsonl";
 const tagsUrl = "data/tags.json";
 const fitlerDocUrlTempl = "doc/filter.{language}.md";
 
