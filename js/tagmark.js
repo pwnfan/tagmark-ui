@@ -17,7 +17,7 @@ const DATA_OPTIONS = {
 
 const uiDataUrl = "data/tagmarks.jsonl";
 const tagsUrl = "data/tags.json";
-const fitlerDocUrlTempl = "doc/filter.{language}.md";
+const fitlerDocUrlTempl = "docs/filter.{language}.md";
 
 const customizedHeaderFilterPlaceholder =
     "Press CTRL/CMD and click here for help...";
