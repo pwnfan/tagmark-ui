@@ -1,0 +1,18 @@
+name: Notify Updates To Github Pages Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification
+        run: |
+          gh api \
+            -X POST repos/${{ github.actor }}/${{ vars.GH_PAGES_REPO }}/dispatches \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer token: ${{ secrets.GH_PAT_TAGMARK }}" \
+            --field event_type=tagmark-ui-main-update
