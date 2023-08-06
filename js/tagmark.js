@@ -543,6 +543,7 @@ function createTable() {
 
     return new Tabulator("#tagmark-table", {
         data: tabulatorData,
+        popupContainer:true,
         columns: columns,
         layout: "fitDataFill",
         pagination: "local",
