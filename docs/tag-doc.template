@@ -1,0 +1,8 @@
+# Tag Doc Example
+
+* {{T:}}
+* {{t+f+c:awesome}}
+* {{t+f:dev}}
+* [my resource collections]{{f:resource-collection}}
+* [wiki sites / pages]{{f+c:wiki}}
+* {{t:sec}}
