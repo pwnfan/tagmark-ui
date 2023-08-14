@@ -1,4 +1,4 @@
-name: Notify Updates To Github Pages Repo
+name: Notify Updates To my-tagmarks
 
 on:
   push:
